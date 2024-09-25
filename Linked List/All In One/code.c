@@ -298,4 +298,88 @@ void insertAtBeginningC(struct CNode** head, int data) {
         *head = newNode;
         return;
     }
-    struct CNode*
+    struct CNode* temp = *head;
+    while (temp->next != *head) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+void insertAtEndC(struct CNode** head, int data) {
+    struct CNode* newNode = (struct CNode*)malloc(sizeof(struct CNode));
+    newNode->data = data;
+    if (*head == NULL) {
+        newNode->next = newNode;
+        *head = newNode;
+        return;
+    }
+    struct CNode* temp = *head;
+    while (temp->next != *head) {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+    newNode->next = *head;
+}
+
+void deleteNodeC(struct CNode** head, int key) {
+    if (*head == NULL) return;
+
+    struct CNode *temp = *head, *prev = NULL;
+
+    if (temp->data == key && temp->next == *head) {
+        *head = NULL;
+        free(temp);
+        return;
+    }
+
+    while (temp->data != key) {
+        if (temp->next == *head) return;
+        prev = temp;
+        temp = temp->next;
+    }
+
+    if (temp == *head) {
+        prev = *head;
+        while (prev->next != *head) {
+            prev = prev->next;
+        }
+        *head = temp->next;
+        prev->next = *head;
+    } else if (temp->next == *head) {
+        prev->next = *head;
+    } else {
+        prev->next = temp->next;
+    }
+    free(temp);
+}
+
+void searchNodeC(struct CNode* head, int key) {
+    struct CNode* temp = head;
+    if (head == NULL) {
+        printf("Node not found\n");
+        return;
+    }
+    do {
+        if (temp->data == key) {
+            printf("Node found with data %d\n", key);
+            return;
+        }
+        temp = temp->next;
+    } while (temp != head);
+    printf("Node not found\n");
+}
+
+void displayListC(struct CNode* head) {
+    if (head == NULL) {
+        printf("List is empty\n");
+        return;
+    }
+    struct CNode* temp = head;
+    do {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    } while (temp != head);
+    printf("(head)\n");
+}
