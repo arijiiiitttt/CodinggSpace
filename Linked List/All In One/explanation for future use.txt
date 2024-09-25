@@ -1,0 +1,117 @@
+Here’s a line-by-line explanation of the code:
+
+1. `#include <stdio.h>` - This includes the standard input-output library for functions like `printf` and `scanf`.
+2. `#include <stdlib.h>` - This includes the standard library for functions like `malloc` and `free`.
+
+**Node Structures:**
+
+3. `struct Node {` - Defines a structure for the Singly Linked List node.
+4. `int data;` - An integer to store the node's data.
+5. `struct Node* next;` - A pointer to the next node in the list.
+6. `};` - End of the Singly Linked List structure.
+
+7. `struct DNode {` - Defines a structure for the Doubly Linked List node.
+8. `int data;` - An integer to store the node's data.
+9. `struct DNode* next;` - A pointer to the next node in the list.
+10. `struct DNode* prev;` - A pointer to the previous node in the list.
+11. `};` - End of the Doubly Linked List structure.
+
+12. `struct CNode {` - Defines a structure for the Circular Linked List node.
+13. `int data;` - An integer to store the node's data.
+14. `struct CNode* next;` - A pointer to the next node, looping back to the start in a circular list.
+15. `};` - End of the Circular Linked List structure.
+
+ **Function Prototypes:**
+
+16. `// Function prototypes for Singly Linked List`
+17. `void insertAtBeginning(struct Node** head, int data);` - Declaration for inserting a node at the beginning of the Singly Linked List.
+18. `void insertAtEnd(struct Node** head, int data);` - Declaration for inserting a node at the end.
+19. `void deleteNode(struct Node** head, int key);` - Declaration for deleting a node with a specific value.
+20. `void searchNode(struct Node* head, int key);` - Declaration for searching for a node.
+21. `void displayList(struct Node* head);` - Declaration for displaying all nodes.
+
+22. `// Function prototypes for Doubly Linked List`
+23. `void insertAtBeginningD(struct DNode** head, int data);` - Declaration for inserting at the beginning of the Doubly Linked List.
+24. `void insertAtEndD(struct DNode** head, int data);` - Declaration for inserting at the end.
+25. `void deleteNodeD(struct DNode** head, int key);` - Declaration for deleting a node.
+26. `void searchNodeD(struct DNode* head, int key);` - Declaration for searching.
+27. `void displayListD(struct DNode* head);` - Declaration for displaying nodes.
+
+28. `// Function prototypes for Circular Linked List`
+29. `void insertAtBeginningC(struct CNode** head, int data);` - Declaration for inserting at the beginning of the Circular Linked List.
+30. `void insertAtEndC(struct CNode** head, int data);` - Declaration for inserting at the end.
+31. `void deleteNodeC(struct CNode** head, int key);` - Declaration for deleting a node.
+32. `void searchNodeC(struct CNode* head, int key);` - Declaration for searching.
+33. `void displayListC(struct CNode* head);` - Declaration for displaying nodes.
+
+ **Main Function:**
+
+34. `int main() {` - Start of the `main` function.
+35. `int choice, type, data, key;` - Variables for menu choices, data input, and search/delete keys.
+36. `struct Node* headS = NULL;` - Initializes the head pointer for the Singly Linked List.
+37. `struct DNode* headD = NULL;` - Initializes the head pointer for the Doubly Linked List.
+38. `struct CNode* headC = NULL;` - Initializes the head pointer for the Circular Linked List.
+
+39. `while (1) {` - Starts an infinite loop for the menu.
+40. `printf("\nMenu:\n");` - Prints the main menu.
+41. `printf("1. Singly Linked List\n");` - Option 1: Singly Linked List.
+42. `printf("2. Doubly Linked List\n");` - Option 2: Doubly Linked List.
+43. `printf("3. Circular Linked List\n");` - Option 3: Circular Linked List.
+44. `printf("4. Exit\n");` - Option 4: Exit the program.
+45. `printf("Enter your choice: ");` - Prompts user for input.
+46. `scanf("%d", &choice);` - Reads the user's choice.
+
+47. `if (choice == 4) break;` - Exits the loop if the user chooses 4.
+
+48. `printf("1. Insert at Beginning\n");` - Operation menu for inserting at the beginning.
+49. `printf("2. Insert at End\n");` - Operation menu for inserting at the end.
+50. `printf("3. Delete Node\n");` - Option to delete a node.
+51. `printf("4. Search Node\n");` - Option to search a node.
+52. `printf("5. Display List\n");` - Option to display the list.
+53. `printf("Enter your operation: ");` - Prompts user for operation type.
+54. `scanf("%d", &type);` - Reads the user's choice.
+
+ **Switch Statements for Singly Linked List:**
+
+55. `switch (choice) {` - Main switch to handle linked list type.
+56. `case 1:` - Case for Singly Linked List.
+57. `switch (type) {` - Nested switch for operations.
+58. `case 1:` - Insertion at beginning.
+59. `printf("Enter data: ");` - Prompts for data.
+60. `scanf("%d", &data);` - Reads data.
+61. `insertAtBeginning(&headS, data);` - Calls insertion function.
+62. `break;` - Ends case.
+
+**More Cases:**
+
+63. `case 2:` - Insert at end.
+64. `insertAtEnd(&headS, data);` - Calls insertion at end.
+65. `case 3:` - Delete node.
+66. `deleteNode(&headS, key);` - Calls deletion function.
+67. `case 4:` - Search node.
+68. `searchNode(headS, key);` - Calls search function.
+69. `case 5:` - Display list.
+70. `displayList(headS);` - Calls display function.
+
+**Similar Structure for Doubly and Circular Lists:**
+
+71. `case 2:` - Doubly Linked List.
+72. Similar steps for insert, delete, search, and display using `insertAtBeginningD`, `deleteNodeD`, etc.
+73. `case 3:` - Circular Linked List.
+74. Similar steps for insert, delete, search, and display using `insertAtBeginningC`, `deleteNodeC`, etc.
+
+75. `return 0;` - End of `main()` function.
+
+ **Function Definitions:**
+
+76. `void insertAtBeginning(struct Node** head, int data) {` - Start of insertion function.
+77. `struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));` - Allocates memory for a new node.
+78. `newNode->data = data;` - Assigns data.
+79. `newNode->next = *head;` - Links new node to current head.
+80. `*head = newNode;` - Updates head pointer to the new node.
+81. `}` - End of insertion function.
+
+82. `void insertAtEnd(struct Node** head, int data) {` - Start of insertion at the end.
+83. If the list is empty, make this the first node, otherwise traverse to the end and insert.
+84. Other functions (`deleteNode`, `searchNode`, etc.) follow similar logical steps, adjusted for each list type.
+
